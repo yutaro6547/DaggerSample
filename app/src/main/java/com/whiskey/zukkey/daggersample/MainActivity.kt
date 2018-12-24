@@ -6,7 +6,8 @@ import android.util.Log
 import android.widget.TextView
 import com.whiskey.zukkey.daggersample.api.GitHubClient
 import com.whiskey.zukkey.daggersample.api.Repo
-import com.whiskey.zukkey.daggersample.di.AppComponent
+import com.whiskey.zukkey.daggersample.di.ShakeHandler
+import com.whiskey.zukkey.daggersample.di.module.HandlerModule
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,10 +18,14 @@ class MainActivity : AppCompatActivity() {
   @Inject
   lateinit var client: GitHubClient
 
+  @Inject
+  lateinit var shakeHandler: ShakeHandler
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    (application as SampleApp).component.inject(this)
+    val component = (application as SampleApp).component
+    component.plus(HandlerModule(this)).inject(this)
     val id = findViewById<TextView>(R.id.github_id)
     val name = findViewById<TextView>(R.id.github_name)
     client.getRepos("Set Your GitHub Account").enqueue(object : Callback<List<Repo>> {
@@ -35,5 +40,11 @@ class MainActivity : AppCompatActivity() {
       }
 
     })
+    shakeHandler.onCreate()
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    shakeHandler.onDestroy()
   }
 }

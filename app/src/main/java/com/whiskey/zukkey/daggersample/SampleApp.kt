@@ -1,9 +1,9 @@
 package com.whiskey.zukkey.daggersample
 
 import android.app.Application
-import com.whiskey.zukkey.daggersample.di.AppComponent
-import com.whiskey.zukkey.daggersample.di.AppModule
-import com.whiskey.zukkey.daggersample.di.DaggerAppComponent
+import com.whiskey.zukkey.daggersample.di.component.AppComponent
+import com.whiskey.zukkey.daggersample.di.component.DaggerAppComponent
+import com.whiskey.zukkey.daggersample.di.module.AppModule
 
 
 class SampleApp : Application() {

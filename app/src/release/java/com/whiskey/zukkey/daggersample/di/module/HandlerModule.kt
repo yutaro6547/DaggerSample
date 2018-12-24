@@ -1,19 +1,18 @@
-package com.whiskey.zukkey.daggersample.di
+package com.whiskey.zukkey.daggersample.di.module
 
-import android.app.Application
+import android.support.v7.app.AppCompatActivity
+import com.whiskey.zukkey.daggersample.ReleaseShakeHandler
 import com.whiskey.zukkey.daggersample.api.GitHubClient
+import com.whiskey.zukkey.daggersample.di.ShakeHandler
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class AppModule(private val application: Application) {
-
-  @Provides fun provideApplication(): Application {
-    return application
-  }
+class HandlerModule(
+    private val activity: AppCompatActivity
+) {
 
   @Provides fun provideRetrofit(): Retrofit {
     return Retrofit.Builder()
@@ -24,5 +23,9 @@ class AppModule(private val application: Application) {
 
   @Provides fun provideGitHubService(retrofit: Retrofit) : GitHubClient.GitHubService {
     return retrofit.create(GitHubClient.GitHubService::class.java)
+  }
+
+  @Provides fun provideShakeHandler(): ShakeHandler {
+    return ReleaseShakeHandler(activity)
   }
 }
