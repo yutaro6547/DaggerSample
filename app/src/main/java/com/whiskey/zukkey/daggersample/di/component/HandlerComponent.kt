@@ -6,13 +6,14 @@ import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
 @Subcomponent(modules = [HandlerModule::class])
-interface HandlerComponent: AndroidInjector<AppCompatActivity> {
-  @Subcomponent.Builder
-  abstract class Builder: AndroidInjector.Builder<AppCompatActivity>() {
-    abstract fun activityModule(module: HandlerModule)
-
-    override fun seedInstance(instance: AppCompatActivity) {
-      activityModule(HandlerModule(instance))
-    }
-  }
-}
+interface HandlerComponent
+//{
+//  @Subcomponent.Builder
+//  abstract class Builder: AndroidInjector.Builder<AppCompatActivity>() {
+//    abstract fun activityModule(module: HandlerModule)
+//
+//    override fun seedInstance(instance: AppCompatActivity) {
+//      activityModule(HandlerModule(instance))
+//    }
+//  }
+//}

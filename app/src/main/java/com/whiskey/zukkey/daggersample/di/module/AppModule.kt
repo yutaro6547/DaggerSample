@@ -8,10 +8,5 @@ import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@Module(subcomponents = [HandlerComponent::class])
-class AppModule(private val application: Application) {
-
-  @Provides fun provideApplication(): Application {
-    return application
-  }
-}
+@Module//(subcomponents = [HandlerComponent::class])
+class AppModule(private val application: Application)
