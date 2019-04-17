@@ -1,19 +1,11 @@
 package com.whiskey.zukkey.daggersample.di.component
 
-import android.support.v7.app.AppCompatActivity
-import com.whiskey.zukkey.daggersample.di.module.HandlerModule
+import com.whiskey.zukkey.daggersample.MainActivity
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
-@Subcomponent(modules = [HandlerModule::class])
-interface HandlerComponent
-//{
-//  @Subcomponent.Builder
-//  abstract class Builder: AndroidInjector.Builder<AppCompatActivity>() {
-//    abstract fun activityModule(module: HandlerModule)
-//
-//    override fun seedInstance(instance: AppCompatActivity) {
-//      activityModule(HandlerModule(instance))
-//    }
-//  }
-//}
+@Subcomponent
+interface HandlerComponent: AndroidInjector<MainActivity> {
+    @Subcomponent.Builder
+    abstract class Builder : AndroidInjector.Builder<MainActivity>()
+}

@@ -27,12 +27,12 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     // Dagger
-    implementation 'com.google.dagger:dagger:2.20'
-    kapt 'com.google.dagger:dagger-compiler:2.20'
+    implementation 'com.google.dagger:dagger:2.11-rc1'
+    kapt 'com.google.dagger:dagger-compiler:2.11-rc1'
     // Dagger-Android
-    implementation 'com.google.dagger:dagger-android:2.20'
-    implementation 'com.google.dagger:dagger-android-support:2.20'
-    kapt 'com.google.dagger:dagger-android-processor:2.20'
+    implementation 'com.google.dagger:dagger-android:2.11-rc1'
+    implementation 'com.google.dagger:dagger-android-support:2.11-rc1'
+    kapt 'com.google.dagger:dagger-android-processor:2.11-rc1'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
