@@ -1,20 +1,24 @@
 package com.whiskey.zukkey.daggersample
 
+import android.app.Activity
 import android.app.Application
-import com.whiskey.zukkey.daggersample.di.component.AppComponent
 import com.whiskey.zukkey.daggersample.di.component.DaggerAppComponent
-import com.whiskey.zukkey.daggersample.di.module.AppModule
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
 
-class SampleApp : Application() {
+class SampleApp : Application(), HasActivityInjector {
 
-  lateinit var component: AppComponent
+  @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
   override fun onCreate() {
     super.onCreate()
-    component = DaggerAppComponent.builder()
-        .appModule(AppModule(this))
-        .build()
-    component.inject(this)
+    DaggerAppComponent.create().inject(this)
+  }
+
+  override fun activityInjector(): AndroidInjector<Activity> {
+    return dispatchingAndroidInjector
   }
 }
